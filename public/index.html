@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webhook Notifications</title>
+    <style>
+        #notifications {
+            list-style-type: none;
+            padding: 0;
+        }
+        .notification {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Webhook Notifications</h1>
+    <ul id="notifications"></ul>
+
+    <!-- Include the notification.js script -->
+    <script src="notifications.js"></script>
+
+    <script>
+        // Function to handle new notifications and display them in the list
+        function displayNotifications(data) {
+            const notificationsList = document.getElementById('notifications');
+            data.forEach(notification => {
+                const listItem = document.createElement('li');
+                listItem.classList.add('notification');
+                listItem.textContent = JSON.stringify(notification);
+                notificationsList.appendChild(listItem);
+            });
+        }
+
+        // Polling function will already be in notification.js as you have it
+        // It will use the same displayNotifications function to render new notifications
+    </script>
+</body>
+</html>
