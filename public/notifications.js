@@ -17,7 +17,7 @@ eventSource.onerror = function () {
 
 //handle the expansion of elements on click
 
-const allMessages = document.querySelectorAll(".message");
+const allMessages = document.querySelectorAll("#messages");
 if(allMessages) {
 
 allMessages.forEach(function (message) {
