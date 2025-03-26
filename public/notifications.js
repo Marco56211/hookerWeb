@@ -10,6 +10,10 @@ eventSource.onmessage = function (event) {
 
     messagesDiv.appendChild(div);
 };
+eventSource.onerror = function () {
+    console.error("EventSource error - trying to reconnect...");
+};
+
 
 //handle the expansion of elements on click
 const allMessages = document.querySelectorAll(".message");
@@ -24,6 +28,3 @@ allMessages.forEach(function (message) {
     };
 })
 
-eventSource.onerror = function () {
-    console.error("EventSource error - trying to reconnect...");
-};
