@@ -16,7 +16,10 @@ eventSource.onerror = function () {
 
 
 //handle the expansion of elements on click
+
 const allMessages = document.querySelectorAll(".message");
+if(allMessages) {
+
 allMessages.forEach(function (message) {
     message.onclick = function () {
         // Toggle between maxHeight 50px and 200px
@@ -27,4 +30,5 @@ allMessages.forEach(function (message) {
         }
     };
 })
+}
 
