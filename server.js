@@ -66,5 +66,11 @@ app.post("/webhook", (req, res) => {
     res.status(200).send("Webhook received");
 });
 
+// Serve the index.html (or other entry point)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+
 // Start the server
 app.listen(3000, () => console.log("Server running on port 3000"));
