@@ -40,6 +40,15 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Serve static files from 'public' directory
+app.use(express.static(path.join(__dirname, "public"), {
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith(".js")) {
+            res.setHeader("Content-Type", "application/javascript");
+        }
+    }
+}));
+
 
 // Start the server
 app.listen(3000, () => console.log("Server running on port 3000"));
