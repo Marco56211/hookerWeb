@@ -1,32 +1,29 @@
-//Polling
-
-// function startPolling() {
-//     setInterval(async () => {
-//         const response = await fetch('/api/webhook'); // Replace with your Vercel endpoint
-//         const data = await response.json();
-//         if (data.length > 0) {
-//             // Process new notifications
-//             console.log('New notifications:', data);
-//         }
-//     }, 5000); // Poll every 5 seconds
-// }
-
-// startPolling();
-
-
-//websockets
 
 const eventSource = new EventSource("/events");
 
-eventSource.onmessage = function(event) {
+eventSource.onmessage = function (event) {
     const data = JSON.parse(event.data);
     const messagesDiv = document.getElementById("messages");
     const div = document.createElement("div");
     div.className = "message";
     div.textContent = JSON.stringify(data);
+
     messagesDiv.appendChild(div);
 };
 
-eventSource.onerror = function() {
+//handle the expansion of elements on click
+const allMessages = document.querySelectorAll(".message");
+allMessages.forEach(function (message) {
+    message.onclick = function () {
+        // Toggle between maxHeight 50px and 200px
+        if (this.style.maxHeight === "50px") {
+            this.style.maxHeight = "200px";
+        } else {
+            this.style.maxHeight = "50px";
+        }
+    };
+})
+
+eventSource.onerror = function () {
     console.error("EventSource error - trying to reconnect...");
 };
